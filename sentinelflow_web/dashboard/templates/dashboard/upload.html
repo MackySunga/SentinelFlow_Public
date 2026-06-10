@@ -1,0 +1,30 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}SentinelFlow Web | Upload{% endblock %}
+{% block content %}
+<section class="card">
+  <p class="eyebrow">Dataset Upload</p>
+  <h1>Upload NetFlow Data</h1>
+  <p>Upload a NetFlow CSV, TSV, TXT, or Parquet file. The prototype will validate columns, clean values, build traffic windows, and summarize FFT-ready features.</p>
+  <form method="post" enctype="multipart/form-data" class="upload-form">
+    {% csrf_token %}
+    <input type="file" name="dataset" accept=".csv,.tsv,.txt,.parquet,.pq" required>
+    <button class="button primary" type="submit">Analyze Upload</button>
+  </form>
+</section>
+{% if analysis %}
+<section class="cards four">
+  <article class="card kpi"><span>{{ analysis.rows }}</span><p>Rows analyzed</p></article>
+  <article class="card kpi"><span>{{ analysis.columns }}</span><p>Columns after cleaning</p></article>
+  <article class="card kpi"><span>{{ analysis.signal_rows }}</span><p>Traffic windows</p></article>
+  <article class="card kpi"><span>{{ analysis.fft_feature_count }}</span><p>FFT-enhanced features</p></article>
+</section>
+<section class="cards two">
+  <article class="card"><h2>Binary Label Summary</h2><div class="bar"><span style="width:{{ analysis.attack_percent }}%"></span></div><p>{{ analysis.attack_count }} attacks ({{ analysis.attack_percent }}%) and {{ analysis.benign_count }} benign rows ({{ analysis.benign_percent }}%).</p></article>
+  <article class="card"><h2>Processing Status</h2><p><strong>Signal mode:</strong> {{ analysis.signal_mode }}</p><p><strong>Baseline segments:</strong> {{ analysis.baseline_segments }}</p><p><strong>FFT segments:</strong> {{ analysis.fft_segments }}</p></article>
+</section>
+<section class="card">
+  <h2>Attack Distribution</h2>
+  <div class="table-wrap"><table><thead><tr><th>Class</th><th>Count</th><th>Percent</th></tr></thead><tbody>{% for row in analysis.attack_distribution %}<tr><td>{{ row.name }}</td><td>{{ row.count }}</td><td>{{ row.percent }}%</td></tr>{% endfor %}</tbody></table></div>
+</section>
+{% endif %}
+{% endblock %}

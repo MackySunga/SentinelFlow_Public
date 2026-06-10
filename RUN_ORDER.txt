@@ -1,0 +1,27 @@
+SentinelFlow V3 Run Order
+
+1. Start Docker Desktop.
+2. Open PowerShell in the project folder.
+3. Run:
+   docker compose down --remove-orphans
+   docker compose build --no-cache
+   docker compose up
+
+4. Open JupyterLab:
+   http://127.0.0.1:8899/lab
+
+5. Run notebooks in this order:
+   notebooks_v3_metrics_pipeline/00_sentinelflow_environment_check.ipynb
+   notebooks_v3_metrics_pipeline/01_sentinelflow_database_preparation.ipynb
+   notebooks_v3_metrics_pipeline/02_sentinelflow_data_cleaning_eda.ipynb
+   notebooks_v3_metrics_pipeline/03_sentinelflow_fft_feature_extraction.ipynb
+   notebooks_v3_metrics_pipeline/04_sentinelflow_deep_learning_models.ipynb
+   notebooks_v3_metrics_pipeline/05_sentinelflow_results_and_discussion.ipynb
+
+6. Open Django prototype:
+   http://127.0.0.1:8000
+
+7. Open presentation web app:
+   presentation_web_app/index.html
+
+Created by Capstone Group 3: Altonaga, Sarceda, Sunga, Torres

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SentinelFlow Presentation App</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+  <aside class="side">
+    <div class="logo"><span>SF</span><strong>SentinelFlow</strong></div>
+    <nav id="nav"></nav>
+    <div class="credit">Created by Capstone Group 3:<br>Altonaga, Sarceda, Sunga, Torres</div>
+  </aside>
+  <main id="slides">
+    <section class="slide active" data-title="Title">
+      <p class="tag">Cybersecurity Analytics Prototype</p>
+      <h1>SentinelFlow</h1>
+      <h2>FFT-Enhanced Deep Learning for Network Intrusion Detection</h2>
+      <p class="lead">A final project prototype that demonstrates how NetFlow traffic can be cleaned, transformed into time-windowed signals, enhanced using Fast Fourier Transform, and evaluated through binary and multiclass intrusion detection.</p>
+      <div class="flowline"><span>NetFlow</span><i></i><span>FFT</span><i></i><span>Deep Learning</span><i></i><span>Detection</span></div>
+    </section>
+    <section class="slide" data-title="Problem">
+      <p class="tag">Problem Statement</p>
+      <h2>Traditional flow features may miss hidden attack rhythms.</h2>
+      <p>Intrusion Detection Systems often rely on time-domain traffic features such as packet counts, byte counts, flow duration, and throughput. These features are useful, but they may not clearly expose burst patterns or repeated behavior found in Distributed Denial-of-Service, brute-force, botnet, and port-scanning attacks.</p>
+      <div class="cards"><article><strong>Challenge 1</strong><span>Large NetFlow datasets require organized preparation.</span></article><article><strong>Challenge 2</strong><span>Time-domain features may miss repeated traffic patterns.</span></article><article><strong>Challenge 3</strong><span>Models need clear metrics beyond accuracy.</span></article></div>
+    </section>
+    <section class="slide" data-title="Data">
+      <p class="tag">Data Pipeline</p>
+      <h2>Network traffic becomes structured evidence.</h2>
+      <div class="pipeline"><div>Raw NetFlow Dataset</div><div>Database Preparation</div><div>Cleaning and EDA</div><div>Time-Window Signals</div><div>FFT Features</div><div>Models and Metrics</div></div>
+      <p>The notebook pipeline prepares CSV, TSV, TXT, or Parquet data, handles missing and infinite values, creates time-windowed traffic signals, and generates baseline plus FFT-enhanced feature sets.</p>
+    </section>
+    <section class="slide" data-title="FFT">
+      <p class="tag">FFT Traffic Profiling</p>
+      <h2>Fast Fourier Transform reveals frequency-domain behavior.</h2>
+      <canvas id="fftCanvas" width="900" height="340"></canvas>
+      <p class="caption">The left side simulates time-domain packet bursts. The right side shows a simplified frequency signature that rises when repeated patterns become stronger.</p>
+    </section>
+    <section class="slide" data-title="Classification">
+      <p class="tag">Detection Tasks</p>
+      <h2>SentinelFlow supports two levels of classification.</h2>
+      <div class="split"><div class="panel"><h3>Binary Classification</h3><p>Answers whether traffic is benign or malicious.</p><div class="pill">Benign</div><div class="pill danger">Attack</div></div><div class="panel"><h3>Multiclass Classification</h3><p>Identifies the specific type of attack when available.</p><div class="chips"><span>DDoS</span><span>DoS</span><span>Bot</span><span>Brute Force</span><span>Port Scan</span><span>Infiltration</span><span>Exploits</span></div></div></div>
+    </section>
+    <section class="slide" data-title="Metrics">
+      <p class="tag">Evaluation</p>
+      <h2>Accuracy alone is not enough for cybersecurity.</h2>
+      <div class="metric-grid"><div>Accuracy</div><div>Precision</div><div>Recall</div><div>F1-score</div><div>Macro F1</div><div>Weighted F1</div><div>False Positive Rate</div><div>False Negative Rate</div><div>ROC-AUC</div><div>PR-AUC</div><div>Confusion Matrix</div><div>Classification Report</div></div>
+    </section>
+    <section class="slide" data-title="Architecture">
+      <p class="tag">Prototype Architecture</p>
+      <h2>One Docker project, three demonstration layers.</h2>
+      <div class="cards"><article><strong>JupyterLab</strong><span>Training, FFT extraction, metrics, and reports.</span></article><article><strong>Django Prototype</strong><span>Upload, validation, profiling, model status, and dashboard.</span></article><article><strong>Presentation Web App</strong><span>Visual storytelling for defense and consultation.</span></article></div>
+    </section>
+    <section class="slide" data-title="Summary">
+      <p class="tag">Final Project Summary</p>
+      <h2>SentinelFlow demonstrates the feasibility of combining signal processing and deep learning for intrusion detection.</h2>
+      <p>The prototype does not need to claim production-level deployment. Its purpose is to show a working, explainable pipeline: data preparation, FFT-enhanced traffic representation, model evaluation, confusion matrices, and a dashboard-centered cybersecurity presentation.</p>
+      <div class="end-credit">Created by Capstone Group 3: Altonaga, Sarceda, Sunga, Torres</div>
+    </section>
+  </main>
+  <div class="controls"><button id="prev">Prev</button><span id="counter">1 / 8</span><button id="next">Next</button></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

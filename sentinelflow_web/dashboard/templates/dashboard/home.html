@@ -1,0 +1,25 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}SentinelFlow Web | Overview{% endblock %}
+{% block content %}
+<section class="hero card glow">
+  <div>
+    <p class="eyebrow">FFT-Enhanced Intrusion Detection Prototype</p>
+    <h1>SentinelFlow Web</h1>
+    <p class="lead">A Django-based prototype for demonstrating NetFlow upload, traffic profiling, FFT feature extraction, and binary plus multiclass intrusion detection workflows.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="/upload/">Upload Dataset</a>
+      <a class="button" href="/dashboard/">View Dashboard</a>
+    </div>
+  </div>
+  <div class="cyber-orb" aria-hidden="true"><span></span><span></span><span></span></div>
+</section>
+<section class="cards three">
+  <article class="card"><h3>1. NetFlow Data</h3><p>Upload CSV, TSV, TXT, or Parquet files containing flow timestamps, packets, bytes, duration, labels, and attack classes.</p></article>
+  <article class="card"><h3>2. FFT Profiling</h3><p>Traffic is grouped into time windows and converted into frequency-domain indicators such as spectral energy and burstiness.</p></article>
+  <article class="card"><h3>3. Detection Dashboard</h3><p>Use notebook-trained models and generated reports to present binary and multiclass detection results.</p></article>
+</section>
+<section class="card">
+  <h2>Prototype Scope</h2>
+  <p>This app is designed for final project demonstration. Training still happens in Jupyter notebooks. The Django app focuses on upload, validation, profiling, dashboard viewing, and report presentation.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SentinelFlow Web{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'dashboard/css/styles.css' %}">
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <header class="topbar">
+    <a href="/" class="brand"><span class="brand-mark">SF</span><span>SentinelFlow Web</span></a>
+    <nav>
+      <a href="/">Overview</a>
+      <a href="/upload/">Upload</a>
+      <a href="/dashboard/">Dashboard</a>
+      <a href="/models/">Models</a>
+      <a href="/reports/">Reports</a>
+    </nav>
+  </header>
+  <main class="shell">
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">Created by Capstone Group 3: Altonaga, Sarceda, Sunga, Torres</footer>
+  <script src="{% static 'dashboard/js/app.js' %}"></script>
+</body>
+</html>

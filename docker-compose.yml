@@ -1,0 +1,42 @@
+services:
+  sentinelflow-jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyter
+    container_name: sentinelflow_jupyter
+    ports:
+      - "8899:8888"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command:
+      - jupyter
+      - lab
+      - --ip=0.0.0.0
+      - --port=8888
+      - --no-browser
+      - --allow-root
+      - --IdentityProvider.token=
+      - --ServerApp.password=
+      - --ServerApp.disable_check_xsrf=True
+      - --ServerApp.allow_origin=*
+
+  sentinelflow-django:
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    container_name: sentinelflow_django
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace/sentinelflow_web
+    environment:
+      - PYTHONPATH=/workspace:/workspace/src
+      - DJANGO_SETTINGS_MODULE=config.settings
+    command:
+      - sh
+      - -c
+      - python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - sentinelflow-jupyter

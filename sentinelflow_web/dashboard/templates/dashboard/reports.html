@@ -1,0 +1,8 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}SentinelFlow Web | Reports{% endblock %}
+{% block content %}
+<section class="card"><p class="eyebrow">Reports</p><h1>Generated HTML Reports</h1><p>Run Notebook 05 to generate the final SentinelFlow dashboard and metric reports.</p></section>
+<section class="card">
+  {% if reports %}<div class="report-list">{% for report in reports %}<div class="report-item"><strong>{{ report.name }}</strong><small>{{ report.path }}</small></div>{% endfor %}</div>{% else %}<p>No HTML reports found yet.</p>{% endif %}
+</section>
+{% endblock %}

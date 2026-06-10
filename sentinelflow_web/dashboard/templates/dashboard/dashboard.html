@@ -1,0 +1,27 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}SentinelFlow Web | Dashboard{% endblock %}
+{% block content %}
+<section class="card">
+  <p class="eyebrow">Results Dashboard</p>
+  <h1>Binary and Multiclass Detection View</h1>
+  <p>This dashboard combines the latest uploaded data profile with notebook-generated model metrics.</p>
+</section>
+{% if analysis %}
+<section class="cards four">
+  <article class="card kpi"><span>{{ analysis.benign_count }}</span><p>Benign rows</p></article>
+  <article class="card kpi threat"><span>{{ analysis.attack_count }}</span><p>Attack rows</p></article>
+  <article class="card kpi"><span>{{ analysis.baseline_segments }}</span><p>Baseline segments</p></article>
+  <article class="card kpi"><span>{{ analysis.fft_segments }}</span><p>FFT segments</p></article>
+</section>
+{% else %}
+<section class="card warning"><h2>No upload analyzed yet</h2><p>Go to the Upload page and analyze a NetFlow file first.</p></section>
+{% endif %}
+<section class="card">
+  <h2>Notebook Model Metrics</h2>
+  {% if metrics %}
+  <div class="table-wrap"><table><thead><tr><th>Task</th><th>Feature Set</th><th>Model</th><th>Accuracy</th><th>Recall</th><th>Macro F1</th><th>FPR</th><th>FNR</th></tr></thead><tbody>
+  {% for row in metrics %}<tr><td>{{ row.task }}</td><td>{{ row.feature_set }}</td><td>{{ row.model }}</td><td>{{ row.accuracy }}</td><td>{{ row.recall }}</td><td>{{ row.macro_f1 }}</td><td>{{ row.false_positive_rate }}</td><td>{{ row.false_negative_rate }}</td></tr>{% endfor %}
+  </tbody></table></div>
+  {% else %}<p>No model metrics found yet. Run notebooks 04 and 05 to generate outputs.</p>{% endif %}
+</section>
+{% endblock %}

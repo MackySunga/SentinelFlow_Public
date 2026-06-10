@@ -1,0 +1,6 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}SentinelFlow Web | Models{% endblock %}
+{% block content %}
+<section class="card"><p class="eyebrow">Model Registry</p><h1>Notebook-Trained Model Files</h1><p>The Django prototype uses model files exported by the Jupyter notebook pipeline. This page checks whether expected files are present.</p></section>
+<section class="card"><h2>Model Directory</h2><p><code>{{ model_status.models_dir }}</code></p><div class="table-wrap"><table><thead><tr><th>File</th><th>Status</th></tr></thead><tbody>{% for name, exists in model_status.files.items %}<tr><td>{{ name }}</td><td>{% if exists %}<span class="ok">Found</span>{% else %}<span class="missing">Missing</span>{% endif %}</td></tr>{% endfor %}</tbody></table></div><p>{{ model_status.note }}</p></section>
+{% endblock %}
